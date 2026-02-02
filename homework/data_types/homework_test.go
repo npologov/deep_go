@@ -9,7 +9,10 @@ import (
 // go test -v homework_test.go
 
 func ToLittleEndian(number uint32) uint32 {
-	return 0 // need to implement
+	return ((number >> 24) & 0xFF) | // Перемещаем байт 3 в позицию 0
+		((number >> 8) & 0xFF00) | // Перемещаем байт 2 в позицию 1
+		((number << 8) & 0xFF0000) | // Перемещаем байт 1 в позицию 2
+		((number << 24) & 0xFF000000) // Перемещаем байт 0 в позицию 3
 }
 
 func TestСonversion(t *testing.T) {
